@@ -1,6 +1,5 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns; sns.set()
 
 x_point = []
 y_point = []
