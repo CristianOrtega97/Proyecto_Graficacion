@@ -122,7 +122,6 @@ def dda_circulo():
 
     while x < y:
         #Agrega las coordenadas como si estuvieran en 0,0 pero suma los datos ingresados
-
         #Normal Primer
         x_list.append(x_ing+x)
         y_list.append(y_ing+y)
@@ -162,7 +161,64 @@ def dda_circulo():
 
 #Función Circulo Bresenham
 def bre_circulo():
-    pass
+    #Ingreso de datos
+    x_ing = int(input("Ingrese x :")) 
+    y_ing = int(input("Ingrese y :"))
+    rad = int(input("Ingrese radio: "))
+    selected_color = input('Ingrese el color "EN INGLÉS" que quiera utilizar: ')
+    x = 0
+    y = rad
+    xK = 0
+    yK = 2 * y_ing
+    pK = 1 - rad
+
+    #Contenedores de Coordenadas
+    x_list = []
+    y_list = []
+
+    while x < y:
+        #Agrega las coordenadas como si estuvieran en 0,0 pero suma los datos ingresados
+        #Normal Primer
+        x_list.append(x_ing+x)
+        y_list.append(y_ing+y)
+        #Espejo Primer
+        x_list.append(x_ing+y)
+        y_list.append(y_ing+x)
+
+        #Normal Segundo
+        x_list.append(x_ing-x)
+        y_list.append(y_ing+y)
+        #Espejo Segundo
+        x_list.append(x_ing-y)
+        y_list.append(y_ing+x)
+
+        #Normal Tercer
+        x_list.append(x_ing-x)
+        y_list.append(y_ing-y)
+        #Espejo Tercer
+        x_list.append(x_ing-y)
+        y_list.append(y_ing-x)
+
+        #Normal Ultimo
+        x_list.append(x_ing+x)
+        y_list.append(y_ing-y)
+        #Espejo Ultimo
+        x_list.append(x_ing+y)
+        y_list.append(y_ing-x)
+
+        if pK >= 0:
+            pK += xK - yK + 5
+        else:
+            pK += xK + 3
+
+        if pK >= 0:
+            y-=1
+        
+        xK = 2 * x
+        yK = 2 * y
+        x += 1
+        
+    graficar(x_list,y_list,selected_color)
 
 #Función Elipse
 def elipse():
